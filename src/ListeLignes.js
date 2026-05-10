@@ -1,5 +1,5 @@
 import LigneBus from './LigneBus';
-import './Listelignes.css';
+import './ListeLignes.css';
 
 function ListeLignes({ lignes }) {
   return (
@@ -13,6 +13,7 @@ function ListeLignes({ lignes }) {
           depart={ligne.depart}
           arrivee={ligne.arrivee}
           arrets={ligne.arrets}
+          couleur={ligne.couleur}
         />
       ))}
     </div>

@@ -38,3 +38,19 @@
     margin-right: 12px;
   }
 }
+.aucun-resultat {
+  text-align: center;
+  padding: 40px 20px;
+  color: #7f8c8d;
+  font-size: 1rem;
+}
+
+.aucun-resultat strong {
+  color: #2c3e50;
+}
+.compteur-recherche {
+  font-size: 0.85rem;
+  color: #0a6e31;
+  font-weight: bold;
+  margin-bottom: 10px;
+}

@@ -9,6 +9,7 @@ import Footer from './Footer';
 function App() {
   const [recherche, setRecherche] = useState("");
   const [ligneSelectionnee, setLigneSelectionnee] = useState(null);
+  const [nbRecherches, setNbRecherches] = useState(0); // Exercice 3
 
   const lignes = [
     { id: 1, numero: "1", depart: "Parcelles Assainies", arrivee: "Plateau", arrets: 14,
@@ -24,6 +25,12 @@ function App() {
     { id: 6, numero: "12", depart: "Yoff", arrivee: "Sandaga", arrets: 11,
       listeArrets: ["Yoff Village", "Aeroport LSS", "Parcelles U17", "Grand Yoff", "HLM", "Sandaga"] },
   ];
+
+  // Exercice 3 : fonction qui met à jour recherche ET le compteur
+  function handleRecherche(valeur) {
+    setRecherche(valeur);
+    setNbRecherches(n => n + 1);
+  }
 
   const lignesFiltrees = lignes.filter(l =>
     l.depart.toLowerCase().includes(recherche.toLowerCase()) ||
@@ -43,21 +50,39 @@ function App() {
     <div className="App">
       <Header />
       <main className="contenu">
-        <Recherche valeur={recherche} onChange={setRecherche} />
+
+        {/* Exercice 3 : compteur */}
+        <p className="compteur-recherche">
+          Vous avez effectué {nbRecherches} recherche{nbRecherches > 1 ? 's' : ''}
+        </p>
+
+        {/* Exercice 1 : bouton Effacer intégré dans Recherche */}
+        <Recherche valeur={recherche} onChange={handleRecherche} />
+
         <p className="resultat-recherche">
           {lignesFiltrees.length} ligne{lignesFiltrees.length > 1 ? 's' : ''} trouvee{lignesFiltrees.length > 1 ? 's' : ''}
         </p>
-        {lignesFiltrees.map(ligne => (
-          <LigneBus
-            key={ligne.id}
-            numero={ligne.numero}
-            depart={ligne.depart}
-            arrivee={ligne.arrivee}
-            arrets={ligne.arrets}
-            estSelectionnee={ligneSelectionnee && ligneSelectionnee.id === ligne.id}
-            onClick={() => handleClickLigne(ligne)}
-          />
-        ))}
+
+        {/* Exercice 2 : message si aucun résultat */}
+        {lignesFiltrees.length === 0 ? (
+          <div className="aucun-resultat">
+            <p>Aucune ligne trouvée pour "<strong>{recherche}</strong>".</p>
+            <p>Essayez un autre terme de recherche.</p>
+          </div>
+        ) : (
+          lignesFiltrees.map(ligne => (
+            <LigneBus
+              key={ligne.id}
+              numero={ligne.numero}
+              depart={ligne.depart}
+              arrivee={ligne.arrivee}
+              arrets={ligne.arrets}
+              estSelectionnee={ligneSelectionnee && ligneSelectionnee.id === ligne.id}
+              onClick={() => handleClickLigne(ligne)}
+            />
+          ))
+        )}
+
         {ligneSelectionnee && <DetailLigne ligne={ligneSelectionnee} />}
       </main>
       <Footer />

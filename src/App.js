@@ -14,7 +14,6 @@ function App() {
   const [recherche, setRecherche] = useState("");
   const [ligneSelectionnee, setLigneSelectionnee] = useState(null);
 
-  // Fonction extraite pour pouvoir etre appelee au demarrage ET par le bouton Recharger
   function chargerLignes() {
     setChargement(true);
     setErreur(null);
@@ -108,6 +107,7 @@ function App() {
           />
         ))}
         {ligneSelectionnee && <DetailLigne ligne={ligneSelectionnee} />}
+        <Carte /> {/* ← AJOUT ICI */}
       </main>
       <Footer />
     </div>

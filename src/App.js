@@ -6,6 +6,9 @@ import LigneBus from './LigneBus';
 import DetailLigne from './DetailLigne';
 import Footer from './Footer';
 import Carte from './Carte';
+import Meteo from './Meteo';
+import SignalerIncident from './SignalerIncident';
+import ListeIncidents from './ListeIncidents';
 
 function App() {
   const [lignes, setLignes] = useState([]);
@@ -85,6 +88,9 @@ function App() {
     <div className="App">
       <Header />
       <main className="contenu">
+
+        <Meteo />
+
         <Recherche valeur={recherche} onChange={setRecherche} />
         <div className="barre-actions">
           <p className="resultat-recherche">
@@ -95,6 +101,7 @@ function App() {
             Recharger
           </button>
         </div>
+
         {lignesFiltrees.map(ligne => (
           <LigneBus
             key={ligne.id}
@@ -106,8 +113,14 @@ function App() {
             onClick={() => handleClickLigne(ligne)}
           />
         ))}
+
         {ligneSelectionnee && <DetailLigne ligne={ligneSelectionnee} />}
-        <Carte /> {/* ← AJOUT ICI */}
+
+        <Carte />
+
+        <SignalerIncident />
+        <ListeIncidents />
+
       </main>
       <Footer />
     </div>

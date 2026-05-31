@@ -1,0 +1,72 @@
+.previsions {
+  margin-top: 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 14px 16px;
+  border-top: 1px solid #dcdde1;
+}
+
+.previsions-titre {
+  color: #2c3e50;
+  font-size: 1rem;
+  margin: 0 0 12px 0;
+  font-weight: 600;
+}
+
+.previsions-liste {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.prevision-jour {
+  flex: 1;
+  min-width: 100px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.prevision-date {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #7f8c8d;
+  margin: 0 0 4px 0;
+}
+
+.prevision-icone {
+  width: 48px;
+  height: 48px;
+}
+
+.prevision-temp {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin: 0 0 4px 0;
+}
+
+.prevision-desc {
+  font-size: 0.75rem;
+  color: #7f8c8d;
+  text-transform: capitalize;
+  margin: 0 0 4px 0;
+}
+
+.prevision-humidite {
+  font-size: 0.75rem;
+  color: #3498db;
+  margin: 0;
+}
+
+.previsions-erreur {
+  border-left: 4px solid #e74c3c;
+}
+
+.previsions-detail {
+  color: #e74c3c;
+  font-family: monospace;
+  font-size: 0.85rem;
+}

@@ -1,0 +1,77 @@
+.signaler {
+  margin-top: 24px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.signaler-titre {
+  color: #2c3e50;
+  font-size: 1.4rem;
+  margin: 0 0 16px 0;
+}
+
+.signaler-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.signaler-input, .signaler-textarea {
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 2px solid #dcdde1;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.signaler-input:focus, .signaler-textarea:focus {
+  border-color: #0a6e31;
+}
+
+.signaler-btn {
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: #0a6e31;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.signaler-btn:hover { background: #085a28; }
+
+.signaler-btn:disabled {
+  background: #95a5a6;
+  cursor: not-allowed;
+}
+
+.signaler-message {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+
+.signaler-succes {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+.signaler-erreur {
+  background: #fff5f5;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.signaler-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%232c3e50' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  cursor: pointer;
+}

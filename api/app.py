@@ -9,14 +9,21 @@ CORS(app)
 with open("lignes_ddd.json", "r", encoding="utf-8") as f:
     lignes = json.load(f)
 
+# Liste en memoire pour les incidents
+incidents = []
+
 
 @app.route("/")
 def accueil():
     return jsonify({
         "message": "Bienvenue sur l'API SenTransport !",
-        "endpoints": ["/lignes", "/lignes/<id>", "/arrets", "/stats", "/lignes/recherche?q=..."]
+        "endpoints": ["/lignes", "/lignes/<id>", "/arrets", "/stats", "/lignes/recherche?q=...", "/incidents"]
     })
 
+
+# ============================================
+# ROUTES LIGNES (existantes)
+# ============================================
 
 @app.route("/lignes")
 def get_lignes():
@@ -37,6 +44,7 @@ def get_ligne(ligne_id):
 # ============================================
 # EXERCICE 1 : Liste de tous les arrets (sans doublons)
 # ============================================
+
 @app.route("/arrets")
 def get_arrets():
     tous_arrets = set()
@@ -49,6 +57,7 @@ def get_arrets():
 # ============================================
 # EXERCICE 2 : Statistiques globales
 # ============================================
+
 @app.route("/stats")
 def get_stats():
     nb_lignes = len(lignes)
@@ -68,6 +77,7 @@ def get_stats():
 # ============================================
 # EXERCICE 3 : Recherche par depart ou arrivee
 # ============================================
+
 @app.route("/lignes/recherche")
 def rechercher_lignes():
     q = request.args.get("q", "").lower()
@@ -79,6 +89,31 @@ def rechercher_lignes():
         if q in ligne["depart"].lower() or q in ligne["arrivee"].lower()
     ]
     return jsonify(resultats)
+
+
+# ============================================
+# LAB 7 : Incidents
+# ============================================
+
+@app.route("/incidents", methods=["GET"])
+def get_incidents():
+    return jsonify(incidents)
+
+
+@app.route("/incidents", methods=["POST"])
+def post_incident():
+    data = request.get_json()
+    if not data or "ligne" not in data or "description" not in data:
+        return jsonify({"erreur": "Champs requis manquants"}), 400
+
+    incident = {
+        "id": len(incidents) + 1,
+        "ligne": data["ligne"],
+        "description": data["description"],
+        "lieu": data.get("lieu", "Non precise"),
+    }
+    incidents.append(incident)
+    return jsonify(incident), 201
 
 
 if __name__ == "__main__":
